@@ -6,24 +6,46 @@ class player:
         self.damage = 2
         self.hit = 4
         self.ac = 7
+        self.init = 4
 
 class dragon:
     def __init__(self):
-        self.health = 45
+        self.health = 15
         self.damage = 5
         self.hit = 6
         self.ac = 10
+        self.init = 8
 
 Heather = player()
 Smaug = dragon()
 
+def heather_attack(attack):
+    print("Heather attacks the dragon!")
+    does_it_hit = random.randint(1,10)
+    if Heather.health <= 0:
+        return("Heather is dead.")
+    elif (does_it_hit + Heather.hit) > Smaug.ac:
+        print("It hits!")
+        Smaug.health = Smaug.health - Heather.hit
+        return("Smaug's health = " + str(Smaug.health))
+    else:
+        return("It missed!")
+
+def smaug_attack(attack):
+    print("Heather is attacked by the dragon!")
+    does_it_hit = random.randint(1, 10)
+    if Smaug.health <= 0:
+        return("Smaug is dead.")
+    elif (does_it_hit + Smaug.hit) > Heather.ac:
+        print("It hits!")
+        Heather.health = Heather.health - Smaug.hit
+        return("Heather's health = " + str(Heather.health))
+    else:
+        return("It missed!")
+    
+while Heather.health > 1 and Smaug.health > 1:
+    print(smaug_attack(1))
+    print(heather_attack(1))    
+
 #print(Heather.health)
 #print(Smaug.hit)
-
-print("Heather attacks Smaug!")
-does_it_hit = random.randint(1,10)
-print(does_it_hit)
-if (does_it_hit + Heather.hit) > 5:
-    print("It hits!")
-else:
-    print("It missed!")
