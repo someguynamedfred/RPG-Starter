@@ -1,0 +1,29 @@
+import random
+
+class player:
+    def __init__(self):
+        self.health = 10
+        self.damage = 2
+        self.hit = 4
+        self.ac = 7
+
+class dragon:
+    def __init__(self):
+        self.health = 45
+        self.damage = 5
+        self.hit = 6
+        self.ac = 10
+
+Heather = player()
+Smaug = dragon()
+
+#print(Heather.health)
+#print(Smaug.hit)
+
+print("Heather attacks Smaug!")
+does_it_hit = random.randint(1,10)
+print(does_it_hit)
+if (does_it_hit + Heather.hit) > 5:
+    print("It hits!")
+else:
+    print("It missed!")
