@@ -2,6 +2,7 @@ import random
 
 class player:
     def __init__(self):
+        self.name = "Player"
         self.health = 20
         self.damage = 4
         self.hit = 4
@@ -18,31 +19,33 @@ class dragon:
         self.ac = 10
         self.init = 8
 
-Heather = player()
-Smaug = dragon()
+heather = player()
+heather.name = "Heather"
+smaug = dragon()
+smaug.name = "Smaug"
 
 def heather_attack(attack):
     does_it_hit = random.randint(1,10)
-    if Heather.health <= 0:
-        return("Heather is dead.")
-    elif Heather.mana >= 2:
-        Smaug.health = Smaug.health - 4
-        Heather.mana = Heather.mana - 2
+    if heather.health <= 0:
+        return("heather is dead.")
+    elif heather.mana >= 2:
+        smaug.health = smaug.health - 4
+        heather.mana = heather.mana - 2
         print("Heather uses a magic blast!")
-        return("Smaug's health = " + str(Smaug.health))
-    elif Heather.health <= 5 and Heather.potion == True:
-        Heather.health = Heather.health + 3
-        Heather.potion = False
+        return("Smaug's health = " + str(smaug.health))
+    elif heather.health <= 5 and heather.potion == True:
+        heather.health = heather.health + 3
+        heather.potion = False
         return("Heather took a health potion and her health is now " + str(Heather.health) + "!")
-    elif (does_it_hit + Heather.hit) > Smaug.ac:
-        Heather.mana = Heather.mana + 1
+    elif (does_it_hit + heather.hit) > smaug.ac:
+        heather.mana = heather.mana + 1
         print("Heather attacks the dragon!")
         print("It hits!")
-        Smaug.health = Smaug.health - random.randint(1, Heather.damage)
-        return("Smaug's health = " + str(Smaug.health))
+        smaug.health = smaug.health - random.randint(1, heather.damage)
+        return("Smaug's health = " + str(smaug.health))
     else:
         print("Heather attacks the dragon!")
-        Heather.mana = Heather.mana + 1
+        heather.mana = heather.mana + 1
         return("It missed!")
 
 def smaug_attack(attack):
@@ -50,17 +53,16 @@ def smaug_attack(attack):
     does_it_hit = random.randint(1, 10)
     if Smaug.health <= 0:
         return("Smaug is dead.")
-    elif (does_it_hit + Smaug.hit) > Heather.ac:
+    elif (does_it_hit + smaug.hit) > heather.ac:
         print("It hits!")
-        Heather.health = Heather.health - random.randint(1, Smaug.damage)
-        return("Heather's health = " + str(Heather.health))
+        heather.health = heather.health - random.randint(1, smaug.damage)
+        return("Heather's health = " + str(heather.health))
     else:
         return("It missed!")
     
-while Heather.health > 0 and Smaug.health > 0:
+while heather.health > 0 and smaug.health > 0:
     print(smaug_attack(1))
     print(heather_attack(1))    
 
 #print(Heather.health)
 #print(Smaug.hit)
-
