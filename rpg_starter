@@ -2,7 +2,7 @@ import random
 
 class player:
     def __init__(self):
-        self.health = 10
+        self.health = 20
         self.damage = 4
         self.hit = 4
         self.ac = 7
@@ -12,7 +12,7 @@ class player:
 
 class dragon:
     def __init__(self):
-        self.health = 15
+        self.health = 27
         self.damage = 5
         self.hit = 6
         self.ac = 10
