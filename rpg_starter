@@ -7,6 +7,7 @@ class player:
         self.hit = 4
         self.ac = 7
         self.init = 4
+        self.potion = True
 
 class dragon:
     def __init__(self):
@@ -20,15 +21,20 @@ Heather = player()
 Smaug = dragon()
 
 def heather_attack(attack):
-    print("Heather attacks the dragon!")
     does_it_hit = random.randint(1,10)
     if Heather.health <= 0:
         return("Heather is dead.")
+    elif Heather.health <= 5 and Heather.potion == True:
+        Heather.health = Heather.health + 3
+        Heather.potion = False
+        return("Heather took a health potion and her health is now " + str(Heather.health) + "!")
     elif (does_it_hit + Heather.hit) > Smaug.ac:
+        print("Heather attacks the dragon!")
         print("It hits!")
-        Smaug.health = Smaug.health - Heather.hit
+        Smaug.health = Smaug.health - random.randint(1, Heather.damage)
         return("Smaug's health = " + str(Smaug.health))
     else:
+        print("Heather attacks the dragon!")
         return("It missed!")
 
 def smaug_attack(attack):
@@ -38,7 +44,7 @@ def smaug_attack(attack):
         return("Smaug is dead.")
     elif (does_it_hit + Smaug.hit) > Heather.ac:
         print("It hits!")
-        Heather.health = Heather.health - Smaug.hit
+        Heather.health = Heather.health - random.randint(1, Smaug.damage)
         return("Heather's health = " + str(Heather.health))
     else:
         return("It missed!")
@@ -49,3 +55,4 @@ while Heather.health > 1 and Smaug.health > 1:
 
 #print(Heather.health)
 #print(Smaug.hit)
+
