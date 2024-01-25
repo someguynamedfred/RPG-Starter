@@ -3,11 +3,12 @@ import random
 class player:
     def __init__(self):
         self.health = 10
-        self.damage = 2
+        self.damage = 4
         self.hit = 4
         self.ac = 7
         self.init = 4
         self.potion = True
+        self.mana = 2
 
 class dragon:
     def __init__(self):
@@ -24,17 +25,24 @@ def heather_attack(attack):
     does_it_hit = random.randint(1,10)
     if Heather.health <= 0:
         return("Heather is dead.")
+    elif Heather.mana >= 2:
+        Smaug.health = Smaug.health - 4
+        Heather.mana = Heather.mana - 2
+        print("Heather uses a magic blast!")
+        return("Smaug's health = " + str(Smaug.health))
     elif Heather.health <= 5 and Heather.potion == True:
         Heather.health = Heather.health + 3
         Heather.potion = False
         return("Heather took a health potion and her health is now " + str(Heather.health) + "!")
     elif (does_it_hit + Heather.hit) > Smaug.ac:
+        Heather.mana = Heather.mana + 1
         print("Heather attacks the dragon!")
         print("It hits!")
         Smaug.health = Smaug.health - random.randint(1, Heather.damage)
         return("Smaug's health = " + str(Smaug.health))
     else:
         print("Heather attacks the dragon!")
+        Heather.mana = Heather.mana + 1
         return("It missed!")
 
 def smaug_attack(attack):
@@ -49,7 +57,7 @@ def smaug_attack(attack):
     else:
         return("It missed!")
     
-while Heather.health >= 0 and Smaug.health >= 0:
+while Heather.health > 0 and Smaug.health > 0:
     print(smaug_attack(1))
     print(heather_attack(1))    
 
