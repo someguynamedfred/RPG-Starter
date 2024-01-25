@@ -49,7 +49,7 @@ def smaug_attack(attack):
     else:
         return("It missed!")
     
-while Heather.health > 1 and Smaug.health > 1:
+while Heather.health >= 0 and Smaug.health >= 0:
     print(smaug_attack(1))
     print(heather_attack(1))    
 
